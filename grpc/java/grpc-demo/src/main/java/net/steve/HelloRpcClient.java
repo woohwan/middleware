@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import java.net.*;
+
 /**
  * A simple client that requests a greeting from the {@link HelloWorldServer}.
  */
@@ -42,9 +44,13 @@ public class HelloRpcClient {
   }
 
   /** Say hello to server. */
-  public void greet(String name) {
+  public void greet(String name) throws UnknownHostException {
     logger.info("Will try to greet " + name + " ...");
-    HelloRequest request = HelloRequest.newBuilder().setName(name).build();
+    InetAddress localhost = InetAddress.getLocalHost();
+    HelloRequest request = HelloRequest.newBuilder()
+        .setName(name)
+        .setIpAddr(localhost.getHostAddress())
+      .build();
     HelloReply response;
     try {
       response = blockingStub.sayHello(request);
