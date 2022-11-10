@@ -27,7 +27,6 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-
 	pb "hello.com/helloworld"
 )
 
