@@ -13,11 +13,7 @@ import route_guide_resources
 def make_route_note(message, latitude, longitue):
   return route_guide_pb2.RouteNote(
     message=message,
-    location=route_guide_pb2.Point(
-      latitude=latitude,
-      longitude=longitue
-    )
-  )
+    location=route_guide_pb2.Point(latitude=latitude,longitude=longitue))
 
 def generate_message() -> Iterable[route_guide_pb2.RouteNote]:
   messages = [
@@ -28,16 +24,14 @@ def generate_message() -> Iterable[route_guide_pb2.RouteNote]:
     make_route_note("5st message", 1,0),
   ]
   for msg in messages:
-    print(f"Sending %s at %s" % (msg.message, msg.location))
+    print(f"Sending {msg.message} at {msg.location.latitude, msg.location.longitude}")
     yield msg
 
 # Performs a bidi-streaming
 def guide_route_chat(stub):
   responses = stub.RouteChat(generate_message())
-  for response in responses:
-    print("Received message %s at %s" %
-              (response.message, response.location))
-
+  for resp in responses:
+    print(f"Received {resp.message} at {resp.location.latitude, resp.location.longitude}")
 
 def run():
   with grpc.insecure_channel('localhost:50051') as channel:
