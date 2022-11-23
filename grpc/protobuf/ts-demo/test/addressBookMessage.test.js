@@ -4,7 +4,7 @@ var addressBookMessage_1 = require("../src/addressBookMessage");
 var fs_1 = require("fs");
 var addressBook = (0, addressBookMessage_1.newAddressBookMsg)();
 var addressbook_proto = (0, addressBookMessage_1.serializeMsgToProto)(addressBook);
-fs_1.promises.writeFile("./addressbook_proto", addressbook_proto);
+fs_1.promises.writeFile("./addressbook_proto.bin", addressbook_proto);
 var addressbook_json = (0, addressBookMessage_1.serializeMsgToJson)(addressBook);
 var address_book = JSON.stringify(addressbook_json);
 fs_1.promises.writeFile("./addressbook.json", address_book);

@@ -1,4 +1,4 @@
 *.class
 grpc/java/grpc-demo/target
 .nvm
-grpc/protobuf/node_modules
+grpc/protobuf/ts-demo/node_modules
