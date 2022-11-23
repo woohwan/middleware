@@ -1,3 +1,4 @@
 *.class
 grpc/java/grpc-demo/target
 .nvm
+grpc/protobuf/node_modules
