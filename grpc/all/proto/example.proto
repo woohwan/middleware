@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package net.steve;
+
+message ServerMessage {
+  string server_message = 1;
+}
+
+message ClientMessage {
+  string client_message = 1;
+}
+
+service Example {
+  rpc unaryCall(ClientMessage) returns (ServerMessage) {}
+  rpc serverStreamCall(ClientMessage) returns (stream ServerMessage) {}
+  rpc clientStreamCall(stream ClientMessage) returns (ServerMessage) {}
+  rpc bidirectionalStreamCall(stream ClientMessage) returns (stream ServerMessage) {}
+}
