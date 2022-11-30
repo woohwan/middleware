@@ -2,3 +2,4 @@
 grpc/java/grpc-demo/target
 .nvm
 grpc/protobuf/ts-demo/node_modules
+grpc/swagger/node_modules

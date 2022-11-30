@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: SOPT API docs
+  description: SOPT SERVER SEMINAR
+  license:
+    name: Jionee
+servers:
+  - url: http://3.37.46.38:4000/ #자신의 포트번호
+
+#Paths api 경로 지정
+paths:
+  /unary:
+    post:
+      summary: send and recieve to/from server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_message:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server_message:
+                    type: string
+
+  /adder:
+    get:
+      summary: "test"
+      description: "+ calc"
+      parameters:
+        - in: query
+          name: one
+          required: true
+          description: "+ operand"
+          schema:
+            type: string
+        - in: query
+          name: two
+          required: true
+          description: "+ operand"
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: "ok"
+          content:
+            text/plain:
+              schema:
+                type: string
