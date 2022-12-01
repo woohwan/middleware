@@ -13,7 +13,7 @@ class ExampleServicer(pb2_grpc.ExampleServicer):
   def unaryCall(self, request: pb2.ClientMessage, context):
     message = request.client_message
     print(f'Recieved message form client: {message}')
-    return pb2.ServerMessage(server_message='message from Server: Ok, Done')
+    return pb2.ServerMessage(server_message=f'message from client: {message}')
 
 def serve():
   # Create grpc Server and register servicer
